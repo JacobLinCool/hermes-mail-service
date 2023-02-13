@@ -3,8 +3,8 @@
 	import "./styles.css";
 </script>
 
-<div class="h-full w-full px-4 py-10">
-	<div class="flex h-full w-full flex-col items-center justify-start gap-2">
+<div class="h-full w-full overflow-auto px-4 py-10">
+	<div class="flex min-h-full w-full flex-col items-center justify-start gap-2">
 		<div class="flex w-full max-w-3xl flex-row-reverse">
 			<div class="dropdown-end dropdown">
 				<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
