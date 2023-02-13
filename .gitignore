@@ -131,7 +131,6 @@ dist
 
 # build files
 dist
-lib
 
 # generated docs
 docs
