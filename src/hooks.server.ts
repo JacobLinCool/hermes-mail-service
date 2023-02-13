@@ -1,4 +1,4 @@
-import { locale } from "svelte-i18n";
+import { t, locale, waitLocale } from "svelte-i18n";
 import type { Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -7,5 +7,25 @@ export const handle: Handle = async ({ event, resolve }) => {
 		locale.set(lang);
 	}
 
+	if (!event.platform?.env?.STORE) {
+		return new Response(
+			JSON.stringify({
+				message: await T("errors.missing-env"),
+			}),
+			{ status: 500 },
+		);
+	}
+
 	return resolve(event);
 };
+
+async function T(key: string): Promise<string> {
+	await waitLocale();
+
+	return await new Promise((resolve) => {
+		const unsubscribe = t.subscribe((x) => {
+			resolve(x(key));
+			setImmediate(() => unsubscribe());
+		});
+	});
+}

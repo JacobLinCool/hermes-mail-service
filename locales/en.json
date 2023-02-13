@@ -3,6 +3,9 @@
 	"allowlist": "Allowlist",
 	"bind-a-kv-namespace": "Bind a KV namespace",
 	"create-token": "Create Token",
+	"errors": {
+		"missing-env": "Missing STORE environment binding, please use Cloudflare's dashboard to bind a KV namespace to the Cloudflare Pages project."
+	},
 	"fork-the-repository": "Fork this repository on GitHub",
 	"hermes-is-a-open-source-edge-email-sending-service-which-is-designed-to-be-easy-to-setup-and-use": "Hermes is a open-source edge email sending service, which is designed to be easy to setup and use.",
 	"hermes-mail-service": "Hermes, mail service",
