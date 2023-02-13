@@ -34,5 +34,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 		CONFIG.$DATE = Date.now();
 	}
 
-	return resolve(event);
+	const res = await resolve(event);
+
+	if (CONFIG.CORS) {
+		res.headers.set("Access-Control-Allow-Origin", CONFIG.CORS);
+		res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+		res.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+	}
+
+	return res;
 };
