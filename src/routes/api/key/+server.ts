@@ -39,6 +39,7 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 		if (err instanceof z.ZodError) {
 			throw error(400, fromZodError(err).message);
 		}
+		console.error(err);
 		throw error(500, "Internal Server Error");
 	}
 };
