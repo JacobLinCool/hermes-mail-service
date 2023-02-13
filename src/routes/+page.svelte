@@ -10,9 +10,7 @@
 	<h1 class="text-primary">{$t("hermes-mail-service")}</h1>
 
 	<p>
-		{$t(
-			"hermes-is-a-open-source-edge-email-sending-service-which-is-designed-to-be-easy-to-setup-and-use",
-		)}
+		{$t("hermes-description")}
 	</p>
 
 	<p>{$t("you-can-use-it-to-send-emails-from-your-own-domain-managed-by-cloudflare")}</p>

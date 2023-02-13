@@ -13,7 +13,7 @@
 		"not-allowed": "寄送者之電子郵件不在許可列表中"
 	},
 	"fork-the-repository": "在 GitHub 上 fork 此儲存庫",
-	"hermes-is-a-open-source-edge-email-sending-service-which-is-designed-to-be-easy-to-setup-and-use": "Hermes 是一個開源的邊緣郵件寄送服務，旨在易於設置和使用。",
+	"hermes-description": "Hermes 是一個開源的邊緣郵件寄送服務，旨在易於設置和使用。",
 	"hermes-mail-service": "Hermes 邊緣郵件寄送服務",
 	"i-am-owner": "管理員",
 	"i-am-user": "使用者",

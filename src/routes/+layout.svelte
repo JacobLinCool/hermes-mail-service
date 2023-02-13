@@ -3,6 +3,11 @@
 	import "./styles.css";
 </script>
 
+<svelte:head>
+	<title>{$t("hermes-mail-service")}</title>
+	<meta name="description" content={$t("hermes-description")} />
+</svelte:head>
+
 <div class="h-full w-full overflow-auto px-4 py-10">
 	<div class="flex min-h-full w-full flex-col items-center justify-start gap-2">
 		<div class="flex w-full max-w-3xl flex-row-reverse">
