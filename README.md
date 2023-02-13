@@ -6,7 +6,7 @@ Example: [https://hermes.csie.cool/](https://hermes.csie.cool/)
 
 | English | Chinese |
 |:-------------------------:|:-------------------------:|
-|![en](https://i.imgur.com/TcMvBQn.png)|![](https://i.imgur.com/9NYRba9.png)|
+|![en](./screenshots/hermes-owner-en.png)|![](./screenshots/hermes-owner-zh.png)|
 
 ## Features
 

@@ -1,3 +1,4 @@
+import { dev } from "$app/environment";
 import { CONFIG } from "$lib/server/config";
 import { $t } from "$lib/server/t";
 import { locale } from "svelte-i18n";
@@ -11,27 +12,29 @@ export const handle: Handle = async ({ event, resolve }) => {
 		locale.set(lang);
 	}
 
-	if (!event.platform?.env?.STORE) {
-		return new Response(
-			JSON.stringify({
-				message: await $t("errors.missing-env"),
-			}),
-			{ status: 500 },
-		);
-	}
-
-	if (CONFIG.$DATE + CONFIG_MAX_TTL < Date.now()) {
-		const config = await event.platform.env.STORE.get("app:config", "json");
-		if (!config) {
+	if (!dev) {
+		if (!event.platform?.env?.STORE) {
 			return new Response(
 				JSON.stringify({
-					message: await $t("errors.config-not-set"),
+					message: await $t("errors.missing-env"),
 				}),
 				{ status: 500 },
 			);
 		}
-		Object.assign(CONFIG, config);
-		CONFIG.$DATE = Date.now();
+
+		if (CONFIG.$DATE + CONFIG_MAX_TTL < Date.now()) {
+			const config = await event.platform.env.STORE.get("app:config", "json");
+			if (!config) {
+				return new Response(
+					JSON.stringify({
+						message: await $t("errors.config-not-set"),
+					}),
+					{ status: 500 },
+				);
+			}
+			Object.assign(CONFIG, config);
+			CONFIG.$DATE = Date.now();
+		}
 	}
 
 	const res = await resolve(event);
