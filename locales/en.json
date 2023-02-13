@@ -1,0 +1,23 @@
+{
+	"allowlist": "Allowlist",
+	"create-token": "Create Token",
+	"i-am-owner": "I am Owner",
+	"i-am-user": "I am User",
+	"main-key": "MAIN KEY",
+	"matched": "matched {match}",
+	"mode": "Mode",
+	"no-match": "No match",
+	"owner-mode": "Owner Mode",
+	"owners-main-key": "Owner's main key",
+	"regexp-allowlist": "RegExp allowlist",
+	"saperate-each-email-with-a-comma": "Saperate each email with a comma (,)",
+	"select-a-mode-to-start": "Select a Mode to start!",
+	"senders-email-must-match-the-allowlist-to-be-allowed-to-send-emails": "Sender's email must match the allowlist to be allowed to send emails.",
+	"test-allowlist": "Test Allowlist",
+	"test-email": "Test email",
+	"token-created": "Token Created",
+	"ttl": "Expiration",
+	"ttl-range": "valid range: 1 second to 3 years",
+	"unit-seconds": "Unit: Second",
+	"user-mode": "User Mode"
+}
