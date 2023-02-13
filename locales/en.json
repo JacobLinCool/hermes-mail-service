@@ -3,6 +3,7 @@
 	"create-token": "Create Token",
 	"i-am-owner": "I am Owner",
 	"i-am-user": "I am User",
+	"invalid-token": "Invalid Token",
 	"main-key": "MAIN KEY",
 	"matched": "matched {match}",
 	"mode": "Mode",
@@ -15,9 +16,11 @@
 	"senders-email-must-match-the-allowlist-to-be-allowed-to-send-emails": "Sender's email must match the allowlist to be allowed to send emails.",
 	"test-allowlist": "Test Allowlist",
 	"test-email": "Test email",
+	"token": "Token",
 	"token-created": "Token Created",
 	"ttl": "Expiration",
 	"ttl-range": "valid range: 1 second to 3 years",
 	"unit-seconds": "Unit: Second",
+	"user-jwt": "User's JWT",
 	"user-mode": "User Mode"
 }

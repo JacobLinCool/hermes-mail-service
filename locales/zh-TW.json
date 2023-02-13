@@ -3,6 +3,7 @@
 	"create-token": "建立授權",
 	"i-am-owner": "管理員",
 	"i-am-user": "使用者",
+	"invalid-token": "無效的授權碼",
 	"main-key": "🔑 主鑰匙",
 	"matched": "符合 {match}",
 	"mode": "模式",
@@ -15,9 +16,11 @@
 	"senders-email-must-match-the-allowlist-to-be-allowed-to-send-emails": "寄件者郵件需包含在許可列表中才能作用",
 	"test-allowlist": "測試許可列表",
 	"test-email": "測試電子郵件地址",
+	"token": "授權碼",
 	"token-created": "授權已建立",
 	"ttl": "時效",
 	"ttl-range": "有效範圍：1 秒 ~ 3 年",
 	"unit-seconds": "單位：秒",
+	"user-jwt": "使用者的 JWT",
 	"user-mode": "使用者模式"
 }

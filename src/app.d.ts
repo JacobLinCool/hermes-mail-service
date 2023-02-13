@@ -9,8 +9,12 @@ declare global {
 		// interface PageData {}
 		interface Platform {
 			env?: {
+				// We use this KV namespace to store JWTs
 				STORE: KVNamespace;
+				// This is the main key used to sign JWTs
 				MAIN_KEY: string;
+				// If this is set, it will always check if the JWT is in the KV namespace before sending the email
+				ALWAYS_CHECK?: string;
 			};
 		}
 	}

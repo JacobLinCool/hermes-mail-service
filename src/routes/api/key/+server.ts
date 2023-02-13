@@ -25,15 +25,18 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 			throw error(401, "Unauthorized");
 		}
 
+		const jti = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+
 		const jwt = await JWT.sign(
 			{
 				allowlist,
 				exp: Math.floor(Date.now() / 1000) + (ttl || 60 * 60 * 24),
+				jti,
 			},
 			KEY,
 		);
 
-		await platform?.env?.STORE.put(Date.now().toString(), jwt);
+		await platform?.env?.STORE.put(jti, jwt);
 		return json({ jwt });
 	} catch (err) {
 		if (err instanceof z.ZodError) {

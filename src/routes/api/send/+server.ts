@@ -13,7 +13,7 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 				from: z.object({ email: z.string().email(), name: z.string().min(1).max(100) }),
 				to: z.array(z.string().email()),
 				subject: z.string().min(1).max(100),
-				content: z.string().min(1).max(10000),
+				content: z.string().min(1).max(100_000),
 			})
 			.parse(body);
 
@@ -25,10 +25,16 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 		if (!valid) {
 			throw error(401, "Unauthorized");
 		}
-		const { allowlist } = JWT.decode(jwt).payload as { allowlist: string[] };
+		const { jti, allowlist } = JWT.decode(jwt).payload as { jti: string; allowlist: string[] };
 		const allowed = allowlist.map((x) => new RegExp(x)).some((x) => x.test(from.email));
 		if (!allowed) {
 			throw error(403, "Forbidden");
+		}
+		if (platform?.env?.ALWAYS_CHECK) {
+			const stored = await platform?.env?.STORE.get(jti);
+			if (!stored) {
+				throw error(401, "Unauthorized");
+			}
 		}
 
 		// API reference: https://api.mailchannels.net/tx/v1/documentation
@@ -50,7 +56,7 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 
 		const response = await fetch(req);
 
-		return json(await response.json());
+		return response;
 	} catch (err) {
 		if (err instanceof z.ZodError) {
 			throw error(400, fromZodError(err).message);
