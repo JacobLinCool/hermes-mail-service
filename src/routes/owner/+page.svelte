@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { t } from "svelte-i18n";
+	import Tokens from "./Tokens.svelte";
 
 	let key = "";
 	let allowlist = "^.*@csie.cool$";
@@ -165,4 +166,8 @@
 			{error}
 		</div>
 	{/if}
+
+	<div class="divider" />
+
+	<Tokens {key} />
 </div>
