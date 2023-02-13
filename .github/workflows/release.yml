@@ -33,6 +33,7 @@ jobs:
               id: changesets
               uses: changesets/action@v1
               with:
+                  publish: pnpm changeset publish
                   version: pnpm changeset version
                   title: Release Packages
                   commit: bump versions
