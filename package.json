@@ -3,7 +3,7 @@
 	"type": "module",
 	"name": "hermes-mail-service",
 	"author": "JacobLinCool <jacoblincool@gmail.com> (https://jacoblin.cool)",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"license": "MIT",
 	"scripts": {
 		"prepare": "husky install",
