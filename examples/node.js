@@ -32,9 +32,13 @@ fetch(endpoint, {
 
             <p><small>This email is sent from Hermes API.</small></p>
 
-            <p><small>Powered by <a href="https://github.com/JacobLinCool/hermes-mail-service">Hermes</a>.</small></p>
+            <p style="font-size: 0.8rem; color: gray">Powered by <a href="https://github.com/JacobLinCool/hermes-mail-service">Hermes</a>.</p>
         `,
 	}),
-}).then(() => {
-	console.log("Email sent successfully!");
+}).then(async (res) => {
+	if (res.ok) {
+		console.log("Email sent successfully!");
+	} else {
+		console.error("Failed to send email");
+	}
 });

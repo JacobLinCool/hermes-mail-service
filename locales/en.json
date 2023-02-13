@@ -4,6 +4,7 @@
 	"bind-a-kv-namespace": "Bind a KV namespace",
 	"create-token": "Create Token",
 	"errors": {
+		"config-not-set": "`app:config` is not set in STORE KV, please set it before start using the service",
 		"internal-server-error": "Internal Server Error",
 		"invalid-jwt": "Invalid JWT",
 		"invalid-main-key": "Invalid main key",

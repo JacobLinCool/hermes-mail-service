@@ -4,6 +4,7 @@
 	"bind-a-kv-namespace": "連結一個 KV 命名空間",
 	"create-token": "建立授權",
 	"errors": {
+		"config-not-set": "無法在 STORE 找到 `app:config` 的值，請先透過 Cloudflare 儀表板設定它",
 		"internal-server-error": "發生伺服器內部錯誤",
 		"invalid-jwt": "無效的 JWT",
 		"invalid-main-key": "無效的主鑰匙",

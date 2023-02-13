@@ -1,3 +1,4 @@
+import { CONFIG } from "$lib/server/config";
 import { $t } from "$lib/server/t";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
@@ -22,7 +23,7 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 		if (!jwt) {
 			throw error(401, await $t("errors.no-jwt"));
 		}
-		const valid = await JWT.verify(jwt, platform?.env?.MAIN_KEY ?? "key");
+		const valid = await JWT.verify(jwt, CONFIG.MAIN_KEY ?? platform?.env?.MAIN_KEY ?? "key");
 		if (!valid) {
 			throw error(401, await $t("errors.invalid-jwt"));
 		}
@@ -31,8 +32,8 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 		if (!allowed) {
 			throw error(403, await $t("errors.not-allowed"));
 		}
-		if (platform?.env?.ALWAYS_CHECK) {
-			const stored = await platform?.env?.STORE.get(jti);
+		if (CONFIG.ALWAYS_CHECK ?? platform?.env?.ALWAYS_CHECK) {
+			const stored = await platform?.env?.STORE.get(`jwt:${jti}`);
 			if (!stored) {
 				throw error(401, await $t("errors.invalid-jwt"));
 			}
