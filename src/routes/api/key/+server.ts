@@ -1,3 +1,4 @@
+import { $t } from "$lib/server/t";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 import { json, error } from "@sveltejs/kit";
@@ -5,9 +6,9 @@ import JWT from "@tsndr/cloudflare-worker-jwt";
 import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ request, platform }) => {
-	const body = await request.json();
-
 	try {
+		const body = await request.json().catch(() => ({}));
+
 		const { key, allowlist, ttl } = z
 			.object({
 				key: z.string().min(1).max(1000),
@@ -22,7 +23,7 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 
 		const KEY = platform?.env?.MAIN_KEY ?? "key";
 		if (key !== KEY) {
-			throw error(401, "Unauthorized");
+			throw error(401, await $t("errors.invalid-main-key"));
 		}
 
 		const jti = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
@@ -46,6 +47,6 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 			throw err;
 		}
 		console.error(err);
-		throw error(500, "Internal Server Error");
+		throw error(500, await $t("errors.internal-server-error"));
 	}
 };

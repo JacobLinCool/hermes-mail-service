@@ -1,13 +1,14 @@
+import { $t } from "$lib/server/t";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
-import { json, error } from "@sveltejs/kit";
+import { error } from "@sveltejs/kit";
 import JWT from "@tsndr/cloudflare-worker-jwt";
 import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ request, fetch, platform }) => {
-	const body = await request.json();
-
 	try {
+		const body = await request.json().catch(() => ({}));
+
 		const { from, to, subject, content } = z
 			.object({
 				from: z.object({ email: z.string().email(), name: z.string().min(1).max(100) }),
@@ -19,21 +20,21 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 
 		const jwt = request.headers.get("authorization")?.replace("Bearer ", "") ?? "";
 		if (!jwt) {
-			throw error(401, "Unauthorized");
+			throw error(401, await $t("errors.no-jwt"));
 		}
 		const valid = await JWT.verify(jwt, platform?.env?.MAIN_KEY ?? "key");
 		if (!valid) {
-			throw error(401, "Unauthorized");
+			throw error(401, await $t("errors.invalid-jwt"));
 		}
 		const { jti, allowlist } = JWT.decode(jwt).payload as { jti: string; allowlist: string[] };
 		const allowed = allowlist.map((x) => new RegExp(x)).some((x) => x.test(from.email));
 		if (!allowed) {
-			throw error(403, "Forbidden");
+			throw error(403, await $t("errors.not-allowed"));
 		}
 		if (platform?.env?.ALWAYS_CHECK) {
 			const stored = await platform?.env?.STORE.get(jti);
 			if (!stored) {
-				throw error(401, "Unauthorized");
+				throw error(401, await $t("errors.invalid-jwt"));
 			}
 		}
 
@@ -65,6 +66,6 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 			throw err;
 		}
 		console.error(err);
-		throw error(500, "Internal Server Error");
+		throw error(500, await $t("errors.internal-server-error"));
 	}
 };

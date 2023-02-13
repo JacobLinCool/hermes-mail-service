@@ -4,7 +4,12 @@
 	"bind-a-kv-namespace": "Bind a KV namespace",
 	"create-token": "Create Token",
 	"errors": {
-		"missing-env": "Missing STORE environment binding, please use Cloudflare's dashboard to bind a KV namespace to the Cloudflare Pages project."
+		"internal-server-error": "Internal Server Error",
+		"invalid-jwt": "Invalid JWT",
+		"invalid-main-key": "Invalid main key",
+		"missing-env": "Missing STORE environment binding, please use Cloudflare's dashboard to bind a KV namespace to the Cloudflare Pages project.",
+		"no-jwt": "No JWT provided in authorization header",
+		"not-allowed": "The email address of the sender is not in allowlist"
 	},
 	"fork-the-repository": "Fork this repository on GitHub",
 	"hermes-is-a-open-source-edge-email-sending-service-which-is-designed-to-be-easy-to-setup-and-use": "Hermes is a open-source edge email sending service, which is designed to be easy to setup and use.",
