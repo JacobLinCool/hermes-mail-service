@@ -1,6 +1,11 @@
 {
 	"$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
-	"changelog": ["@changesets/changelog-github", { "repo": "jacoblincool/mail-service" }],
+	"changelog": [
+		"@changesets/changelog-github",
+		{
+			"repo": "jacoblincool/hermes-mail-service"
+		}
+	],
 	"commit": false,
 	"fixed": [],
 	"linked": [],

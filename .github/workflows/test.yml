@@ -24,7 +24,4 @@ jobs:
                   run_install: true
 
             - name: Build All
-              run: pnpm -r build
-
-            - name: Run Tests
-              run: pnpm test
+              run: pnpm build

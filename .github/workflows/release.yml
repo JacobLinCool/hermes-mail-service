@@ -27,16 +27,14 @@ jobs:
                   run_install: true
 
             - name: Build
-              run: pnpm -r build
+              run: pnpm build
 
             - name: Create Release Pull Request or Publish to NPM
               id: changesets
               uses: changesets/action@v1
               with:
-                  publish: pnpm changeset publish
                   version: pnpm changeset version
                   title: Release Packages
                   commit: bump versions
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"type": "module",
-	"name": "mail-service",
+	"name": "hermes-mail-service",
 	"author": "JacobLinCool <jacoblincool@gmail.com> (https://jacoblin.cool)",
 	"license": "MIT",
 	"scripts": {
@@ -70,10 +70,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/JacobLinCool/mail-service.git"
+		"url": "https://github.com/JacobLinCool/hermes-mail-service.git"
 	},
 	"bugs": {
-		"url": "https://github.com/JacobLinCool/mail-service/issues"
+		"url": "https://github.com/JacobLinCool/hermes-mail-service/issues"
 	},
-	"homepage": "https://jacoblincool.github.io/mail-service"
+	"homepage": "https://jacoblincool.github.io/hermes-mail-service"
 }
