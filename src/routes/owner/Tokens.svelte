@@ -5,7 +5,7 @@
 	export let key: string;
 
 	let tokens: {
-		jwt: string;
+		jti: string;
 		allowlist: string[];
 		exp: number;
 	}[] = [];
@@ -30,10 +30,27 @@
 					}[];
 				}>();
 				tokens = data.keys.map((x) => ({
-					jwt: x.name.replace("jwt:", ""),
+					jti: x.name.replace("jwt:", ""),
 					allowlist: x.metadata.allowlist,
 					exp: x.metadata.exp,
 				}));
+			}
+		} finally {
+			loading = false;
+		}
+	}
+
+	async function revoke(jti: string) {
+		loading = true;
+		try {
+			const res = await fetch(`/api/key/${jti}`, {
+				method: "DELETE",
+				headers: {
+					"X-Key": key,
+				},
+			});
+			if (res.ok) {
+				tokens = tokens.filter((x) => x.jti !== jti);
 			}
 		} finally {
 			loading = false;
@@ -54,15 +71,21 @@
 				<div class="flex-1 text-sm font-bold">{$t("ttl")}</div>
 				<div class="w-20 text-sm font-bold" />
 			</div>
-			{#each tokens as key, i (key.jwt)}
+			{#each tokens as key, i (key.jti)}
 				<div
 					class="flex flex-row items-center justify-between gap-2"
 					transition:fade={{ duration: 100, delay: i * 50 }}
 				>
-					<div class="flex-1 overflow-scroll text-sm">{key.jwt}</div>
+					<div class="flex-1 overflow-scroll text-sm">{key.jti}</div>
 					<div class="flex-1 text-sm">{key.allowlist}</div>
 					<div class="flex-1 text-sm">{new Date(key.exp * 1000).toLocaleString()}</div>
-					<button class="btn-outline btn-error btn w-20">{$t("revoke")}</button>
+					<button
+						class="btn-outline btn-error btn w-20"
+						on:click={() => revoke(key.jti)}
+						disabled={loading}
+					>
+						{$t("revoke")}
+					</button>
 				</div>
 			{/each}
 		</div>
