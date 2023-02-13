@@ -1,39 +1,33 @@
-# mail-service
+# Hermes, mail service
 
-Use Cloudflare Wrokers as Mail Service
+Hermes is a open-source edge email sending service, which is designed to be easy to setup and use.
+
+Example: [https://hermes.csie.cool/](https://hermes.csie.cool/)
+
+| English | Chinese |
+|:-------------------------:|:-------------------------:|
+|![en](https://i.imgur.com/TcMvBQn.png)|![](https://i.imgur.com/9NYRba9.png)|
 
 ## Features
 
-- [x] Dev Container - Unified Development Environment
-- [x] Changeset - Changelog Management, Versioning, and Publishing
-- [x] Husky - Git Hooks (Commit, Merge)
-- [x] GitHub Actions - Test, Docs, Release
+- [x] Easy to Setup - You only need a browser to setup the service
+- [x] Token-based authentication - Use allowlist and TTL to control the access
+- [x] Web UI - Control the service from the anywhere
+- [x] I18n - The web UI supports multiple languages (currently, English and Chinese)
 
-> This template can be used by [`tmpl`](https://github.com/JacobLinCool/tmpl) to generate a new project.
+## Getting Started
 
-## Workflow
+> First, you need to have a domain that is managed by Cloudflare.
 
-It is highly integrated with GitHub Actions.
+1. Fork the repository
+2. Setup the [Cloudflare Pages](https://pages.cloudflare.com/) for your forked repository
+3. Binding a KV namespace to your Cloudflare Pages project
+4. Set the `MAIN_KEY` environment variable in your Cloudflare Pages project
 
-### Setup
+All of the above can be done in the browser! No need to install anything.
 
-Before you start, you should:
+## API Usage
 
-- [Set `NPM_TOKEN` in your repository secrets.](./settings/secrets/actions)
-- [Use GitHub Actions as the source of GitHub Pages.](./settings/pages)
-- [Allow GitHub Actions to create and approve pull requests.](./settings/actions)
+Once you have generated a token, you can use the API to send emails.
 
-### Make Changes
-
-After you make changes, you should:
-
-- Run `pnpm changeset` to record changes.
-- Commit changes.
-
-### Publish
-
-The GitHub Actions will automatically create a PR if there are one or more changesets in the `main` branch.
-
-After the PR is merged, the GitHub Actions will automatically publish the package to NPM and generate GitHub Releases.
-
-That's all! You don't need to do anything else.
+See [examples](./examples/) for more details.
