@@ -11,9 +11,9 @@ declare global {
 			env?: {
 				// We use this KV namespace to store JWTs
 				STORE: KVNamespace;
-				// This is the main key used to sign JWTs
+				// Fall back to this key if the MAIN_KEY is not set in the config
 				MAIN_KEY: string;
-				// If this is set, it will always check if the JWT is in the KV namespace before sending the email
+				// Fall back to this value if the ALWAYS_CHECK is not set in the config
 				ALWAYS_CHECK?: string;
 			};
 		}

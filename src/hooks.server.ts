@@ -1,6 +1,9 @@
+import { CONFIG } from "$lib/server/config";
 import { $t } from "$lib/server/t";
 import { locale } from "svelte-i18n";
 import type { Handle } from "@sveltejs/kit";
+
+const CONFIG_MAX_TTL = 1000 * 60 * 5;
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const lang = event.request.headers.get("accept-language")?.split(",")[0];
@@ -17,5 +20,27 @@ export const handle: Handle = async ({ event, resolve }) => {
 		);
 	}
 
-	return resolve(event);
+	if (CONFIG.$DATE + CONFIG_MAX_TTL < Date.now()) {
+		const config = await event.platform.env.STORE.get("app:config", "json");
+		if (!config) {
+			return new Response(
+				JSON.stringify({
+					message: await $t("errors.config-not-set"),
+				}),
+				{ status: 500 },
+			);
+		}
+		Object.assign(CONFIG, config);
+		CONFIG.$DATE = Date.now();
+	}
+
+	const res = await resolve(event);
+
+	if (CONFIG.CORS) {
+		res.headers.set("Access-Control-Allow-Origin", CONFIG.CORS);
+		res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+		res.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+	}
+
+	return res;
 };

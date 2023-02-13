@@ -1,3 +1,4 @@
+import { CONFIG } from "$lib/server/config";
 import { $t } from "$lib/server/t";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
@@ -21,23 +22,21 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 			})
 			.parse(body);
 
-		const KEY = platform?.env?.MAIN_KEY ?? "key";
+		const KEY = CONFIG.MAIN_KEY ?? platform?.env?.MAIN_KEY ?? "key";
 		if (key !== KEY) {
 			throw error(401, await $t("errors.invalid-main-key"));
 		}
 
+		const TTL = ttl || CONFIG.DEFAULT_TTL || 60 * 60 * 24;
 		const jti = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+		const exp = Math.floor(Date.now() / 1000) + TTL;
 
-		const jwt = await JWT.sign(
-			{
-				allowlist,
-				exp: Math.floor(Date.now() / 1000) + (ttl || 60 * 60 * 24),
-				jti,
-			},
-			KEY,
-		);
+		const jwt = await JWT.sign({ allowlist, exp, jti }, KEY);
 
-		await platform?.env?.STORE.put(jti, jwt);
+		await platform?.env?.STORE.put(`jwt:${jti}`, jwt, {
+			expirationTtl: TTL,
+			metadata: { allowlist, exp },
+		});
 		return json({ jwt });
 	} catch (err) {
 		if (err instanceof z.ZodError) {
