@@ -55,6 +55,7 @@
 			if (res.ok) {
 				const data = await res.json<{ jwt: string }>();
 				jwt = data.jwt;
+				error = "";
 				prompt($t("token-created"), jwt);
 			} else {
 				throw new Error("Error " + res.status + ": " + (await res.text()));
@@ -154,13 +155,13 @@
 	</div>
 
 	{#if jwt}
-		<div class="text-primary">
+		<div class="break-all text-primary">
 			{jwt}
 		</div>
 	{/if}
 
 	{#if error}
-		<div class="text-error">
+		<div class="break-all text-error">
 			{error}
 		</div>
 	{/if}
