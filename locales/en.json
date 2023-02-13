@@ -1,6 +1,11 @@
 {
+	"after-you-have-completed-the-setup-you-can-generate-a-token-and-use-it-to-send-emails-through-the-api": "After you have completed the setup, you can generate a token and use it to send emails through the API.",
 	"allowlist": "Allowlist",
+	"bind-a-kv-namespace": "Bind a KV namespace",
 	"create-token": "Create Token",
+	"fork-the-repository": "Fork this repository on GitHub",
+	"hermes-is-a-open-source-edge-email-sending-service-which-is-designed-to-be-easy-to-setup-and-use": "Hermes is a open-source edge email sending service, which is designed to be easy to setup and use.",
+	"hermes-mail-service": "Hermes, mail service",
 	"i-am-owner": "I am Owner",
 	"i-am-user": "I am User",
 	"invalid-token": "Invalid Token",
@@ -14,13 +19,17 @@
 	"saperate-each-email-with-a-comma": "Saperate each email with a comma (,)",
 	"select-a-mode-to-start": "Select a Mode to start!",
 	"senders-email-must-match-the-allowlist-to-be-allowed-to-send-emails": "Sender's email must match the allowlist to be allowed to send emails.",
+	"set-environment-variable": "Set environment variable",
+	"setup-the-cloudflare-pages": "Setup the Cloudflare Pages",
 	"test-allowlist": "Test Allowlist",
 	"test-email": "Test email",
+	"the-setup-is-very-easy-and-all-steps-can-be-done-directly-in-your-browser": "The setup is very easy and all steps can be done directly in your browser.",
 	"token": "Token",
 	"token-created": "Token Created",
 	"ttl": "Expiration",
 	"ttl-range": "valid range: 1 second to 3 years",
 	"unit-seconds": "Unit: Second",
 	"user-jwt": "User's JWT",
-	"user-mode": "User Mode"
+	"user-mode": "User Mode",
+	"you-can-use-it-to-send-emails-from-your-own-domain-managed-by-cloudflare": "You can use it to send emails from your own domain managed by Cloudflare."
 }
