@@ -49,7 +49,7 @@
 	{#if tokens.length}
 		<div class="flex w-full flex-col gap-4">
 			<div class="flex w-full flex-row items-center justify-between gap-2">
-				<div class="flex-1 text-sm font-bold">{$t("token")}</div>
+				<div class="flex-1 text-sm font-bold">ID</div>
 				<div class="flex-1 text-sm font-bold">{$t("allowlist")}</div>
 				<div class="flex-1 text-sm font-bold">{$t("ttl")}</div>
 				<div class="w-20 text-sm font-bold" />
