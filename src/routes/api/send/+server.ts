@@ -18,6 +18,9 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 			.parse(body);
 
 		const jwt = request.headers.get("authorization")?.replace("Bearer ", "") ?? "";
+		if (!jwt) {
+			throw error(401, "Unauthorized");
+		}
 		const valid = await JWT.verify(jwt, platform?.env?.MAIN_KEY ?? "key");
 		if (!valid) {
 			throw error(401, "Unauthorized");
@@ -28,6 +31,7 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 			throw error(403, "Forbidden");
 		}
 
+		// API reference: https://api.mailchannels.net/tx/v1/documentation
 		const req = new Request("https://api.mailchannels.net/tx/v1/send", {
 			method: "POST",
 			headers: { "content-type": "application/json" },
@@ -50,6 +54,9 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 	} catch (err) {
 		if (err instanceof z.ZodError) {
 			throw error(400, fromZodError(err).message);
+		}
+		if (err && typeof err === "object" && "status" in err) {
+			throw err;
 		}
 		console.error(err);
 		throw error(500, "Internal Server Error");
