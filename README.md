@@ -21,8 +21,17 @@ Example: [https://hermes.csie.cool/](https://hermes.csie.cool/)
 
 1. Fork the repository
 2. Setup the [Cloudflare Pages](https://pages.cloudflare.com/) for your forked repository
-3. Binding a KV namespace to your Cloudflare Pages project
-4. Set the `MAIN_KEY` environment variable in your Cloudflare Pages project
+3. Binding a KV namespace to your Cloudflare Pages project as `STORE`
+4. Set the `app:config` key in the KV namespace to the following JSON:
+
+```json
+{
+  "MAIN_KEY": "YOUR_MAIN_KEY"
+}
+```
+
+> You can also set other configurations in the `app:config` key, see [config.ts](./src/lib/server/config.ts) for more details.
+> For example, you can set `CORS` to `"*"` to allow CORS requests from anywhere.
 
 All of the above can be done in the browser! No need to install anything.
 
