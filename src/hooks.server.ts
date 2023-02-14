@@ -7,10 +7,8 @@ import type { Handle } from "@sveltejs/kit";
 const CONFIG_MAX_TTL = 1000 * 60 * 5;
 
 export const handle: Handle = async ({ event, resolve }) => {
-	const lang = event.request.headers.get("accept-language")?.split(",")[0];
-	if (lang) {
-		locale.set(lang);
-	}
+	const lang = event.request.headers.get("accept-language")?.split(",")[0] || "en";
+	locale.set(lang);
 
 	if (!dev) {
 		if (!event.platform?.env?.STORE) {
