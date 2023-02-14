@@ -1,4 +1,4 @@
-# Hermes, mail service
+# ![](./static/hermes-xs.png) Hermes, mail service
 
 Hermes is a open-source edge email sending service, which is designed to be easy to setup and use.
 
@@ -40,3 +40,7 @@ All of the above can be done in the browser! No need to install anything.
 Once you have generated a token, you can use the API to send emails.
 
 See [examples](./examples/) for more details.
+
+## Credits
+
+The icon is based on Boxicons [https://boxicons.com/](https://boxicons.com/).
