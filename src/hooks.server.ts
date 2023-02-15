@@ -1,7 +1,6 @@
 import { dev } from "$app/environment";
 import { CONFIG } from "$lib/server/config";
 import { $t } from "$lib/server/t";
-import juice from "juice";
 import { locale } from "svelte-i18n";
 import type { Handle } from "@sveltejs/kit";
 
