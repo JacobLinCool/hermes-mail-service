@@ -357,6 +357,10 @@
 											</p>
 										</td>
 									</tr>
+									<!-- svelte-ignore a11y-no-interactive-element-to-noninteractive-role -->
+									<tr role="separator">
+										<td style="height: 24px" />
+									</tr>
 								</table>
 							</td>
 						</tr>
