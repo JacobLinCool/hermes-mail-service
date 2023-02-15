@@ -12,6 +12,7 @@ const config = {
 		alias: {
 			"$i18n/*": "./locales/*",
 		},
+		inlineStyleThreshold: 128 * 1024,
 	},
 };
 
