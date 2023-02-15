@@ -6,7 +6,7 @@ export async function $t(key: string): Promise<string> {
 	return await new Promise((resolve) => {
 		const unsubscribe = t.subscribe((x) => {
 			resolve(x(key));
-			setImmediate(() => unsubscribe());
+			setTimeout(() => unsubscribe(), 0);
 		});
 	});
 }
