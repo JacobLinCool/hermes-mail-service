@@ -7,9 +7,11 @@ import type { Handle } from "@sveltejs/kit";
 const CONFIG_MAX_TTL = 1000 * 60 * 5;
 
 export const handle: Handle = async ({ event, resolve }) => {
-	const lang = event.request.headers.get("accept-language")?.split(",")[0];
-	if (lang) {
-		locale.set(lang);
+	const lang = event.request.headers.get("accept-language")?.split(",")[0] || "en";
+	locale.set(lang);
+
+	if (event.url.pathname.startsWith("/template")) {
+		return resolve(event);
 	}
 
 	if (!dev) {
@@ -40,9 +42,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const res = await resolve(event);
 
 	if (CONFIG.CORS) {
-		res.headers.set("Access-Control-Allow-Origin", CONFIG.CORS);
-		res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
-		res.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+		const res2 = new Response(res.body, res);
+		res2.headers.set("Access-Control-Allow-Origin", CONFIG.CORS);
+		res2.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+		res2.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+		return res2;
 	}
 
 	return res;

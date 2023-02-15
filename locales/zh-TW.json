@@ -10,7 +10,8 @@
 		"invalid-main-key": "無效的主鑰匙",
 		"missing-env": "缺少 STORE 環境綁定，請使用 Cloudflare 儀表板將 KV 命名空間連結到 Cloudflare Pages 專案",
 		"no-jwt": "未於 authorization 請求標頭中提供 JWT",
-		"not-allowed": "寄送者之電子郵件不在許可列表中"
+		"not-allowed": "寄送者之電子郵件不在許可列表中",
+		"template-render-failed": "模板生成錯誤"
 	},
 	"fork-the-repository": "在 GitHub 上 fork 此儲存庫",
 	"hermes-description": "Hermes 是一個開源的邊緣郵件寄送服務，旨在易於設置和使用。",

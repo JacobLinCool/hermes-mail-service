@@ -1,6 +1,6 @@
 # ![](./static/hermes-xs.png) Hermes, mail service
 
-Hermes is a open-source edge email sending service, which is designed to be easy to setup and use.
+Hermes is an open-source edge email sending service, which is designed to be easy to setup and use.
 
 Example: [https://hermes.csie.cool/](https://hermes.csie.cool/)
 
