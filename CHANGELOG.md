@@ -1,5 +1,15 @@
 # hermes-mail-service
 
+## 1.2.0
+
+### Minor Changes
+
+-   [#12](https://github.com/JacobLinCool/hermes-mail-service/pull/12) [`18162e8`](https://github.com/JacobLinCool/hermes-mail-service/commit/18162e8198ab4a04d7383fb66ec509253f205751) Thanks [@JacobLinCool](https://github.com/JacobLinCool)! - Support email templates
+
+### Patch Changes
+
+-   [`6987dfb`](https://github.com/JacobLinCool/hermes-mail-service/commit/6987dfbfac9d39bcd18d02e058eab44585fe4528) Thanks [@JacobLinCool](https://github.com/JacobLinCool)! - Add icon
+
 ## 1.1.0
 
 ### Minor Changes
