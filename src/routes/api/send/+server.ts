@@ -55,9 +55,13 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 				for (const [key, value] of Object.entries(content.params ?? {})) {
 					search.append(key, value);
 				}
-				rendered_template = await fetch(
-					`/templates/${content.template}.html?${search}`,
-				).then((x) => x.text());
+				const res = await fetch(`/template/${content.template}?${search}`);
+
+				if (!res.ok) {
+					throw new Error();
+				}
+
+				rendered_template = await res.text();
 			} catch {
 				throw error(500, await $t("errors.template-render-failed"));
 			}
