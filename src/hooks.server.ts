@@ -1,6 +1,7 @@
 import { dev } from "$app/environment";
 import { CONFIG } from "$lib/server/config";
 import { $t } from "$lib/server/t";
+import juice from "juice";
 import { locale } from "svelte-i18n";
 import type { Handle } from "@sveltejs/kit";
 
@@ -9,6 +10,10 @@ const CONFIG_MAX_TTL = 1000 * 60 * 5;
 export const handle: Handle = async ({ event, resolve }) => {
 	const lang = event.request.headers.get("accept-language")?.split(",")[0] || "en";
 	locale.set(lang);
+
+	if (event.url.pathname.startsWith("/template")) {
+		return resolve(event);
+	}
 
 	if (!dev) {
 		if (!event.platform?.env?.STORE) {
