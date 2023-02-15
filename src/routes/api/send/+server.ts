@@ -15,7 +15,16 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 				from: z.object({ email: z.string().email(), name: z.string().min(1).max(100) }),
 				to: z.array(z.string().email()),
 				subject: z.string().min(1).max(100),
-				content: z.string().min(1).max(100_000),
+				content: z
+					.string()
+					.min(1)
+					.max(100_000)
+					.or(
+						z.object({
+							template: z.string().min(1).max(100),
+							params: z.record(z.string().min(1).max(100)).optional(),
+						}),
+					),
 			})
 			.parse(body);
 
@@ -39,6 +48,21 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 			}
 		}
 
+		let rendered_template = "";
+		if (typeof content === "object") {
+			try {
+				const search = new URLSearchParams();
+				for (const [key, value] of Object.entries(content.params ?? {})) {
+					search.append(key, value);
+				}
+				rendered_template = await fetch(
+					`/templates/${content.template}.html?${search}`,
+				).then((x) => x.text());
+			} catch {
+				throw error(500, await $t("errors.template-render-failed"));
+			}
+		}
+
 		// API reference: https://api.mailchannels.net/tx/v1/documentation
 		const req = new Request("https://api.mailchannels.net/tx/v1/send", {
 			method: "POST",
@@ -50,7 +74,7 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 				content: [
 					{
 						type: "text/html",
-						value: content,
+						value: rendered_template || content,
 					},
 				],
 			}),
