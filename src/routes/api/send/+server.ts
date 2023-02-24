@@ -22,7 +22,7 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 					.or(
 						z.object({
 							template: z.string().min(1).max(100),
-							params: z.record(z.string().min(1).max(100)).optional(),
+							params: z.record(z.string().min(1).max(1_000)).optional(),
 						}),
 					),
 			})
