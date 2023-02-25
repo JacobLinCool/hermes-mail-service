@@ -264,11 +264,12 @@
 											<p style="margin: 0; margin-bottom: 24px">
 												{body}
 											</p>
-											<div style="line-height: 100%">
-												<a
-													href={link_url}
-													class="hover-bg-purple-500"
-													style="
+											{#if link_name}
+												<div style="line-height: 100%">
+													<a
+														href={link_url}
+														class="hover-bg-purple-500"
+														style="
 															text-decoration: none;
 															display: inline-block;
 															border-radius: 4px;
@@ -290,8 +291,8 @@
 															);
 															transition-duration: 150ms;
 														"
-												>
-													<!--[if mso]>
+													>
+														<!--[if mso]>
 															<i
 																style="
 																	mso-text-raise: 30px;
@@ -300,16 +301,17 @@
 																>&#8202;</i
 															>
 														<![endif]-->
-													<span style="mso-text-raise: 16px"
-														>{link_name}</span
-													>
-													<!--[if mso]>
+														<span style="mso-text-raise: 16px"
+															>{link_name}</span
+														>
+														<!--[if mso]>
 															<i style="letter-spacing: 24px"
 																>&#8202;</i
 															>
 														<![endif]-->
-												</a>
-											</div>
+													</a>
+												</div>
+											{/if}
 										</td>
 									</tr>
 									<!-- svelte-ignore a11y-no-interactive-element-to-noninteractive-role -->
