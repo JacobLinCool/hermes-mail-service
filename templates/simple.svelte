@@ -394,4 +394,4 @@
 	</div>
 </body>
 
-{create_ld()}
+{@html create_ld()}
