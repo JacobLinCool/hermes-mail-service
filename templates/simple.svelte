@@ -15,7 +15,7 @@
 	const footers = footer.split(";").map((f) => f.split(","));
 
 	function create_ld(): string {
-		return `<${"script"} type="application/ld+json">${JSON.stringify([
+		return `<${"script"} type=3D"application/ld+json">${JSON.stringify([
 			{
 				"@context": "http://schema.org",
 				"@type": "EmailMessage",
