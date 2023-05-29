@@ -13,6 +13,27 @@
 
 	const [link_name, link_url] = link.split(",");
 	const footers = footer.split(";").map((f) => f.split(","));
+
+	function create_ld(): string {
+		return `<${"script"} type="application/ld+json">${JSON.stringify([
+			{
+				"@context": "http://schema.org",
+				"@type": "EmailMessage",
+				potentialAction: {
+					"@type": "ViewAction",
+					target: link_url,
+					url: link_url,
+					name: link_name,
+				},
+				description: main,
+				publisher: {
+					"@type": "Organization",
+					name: "Hermes Mail Service",
+					url: "https://hermes.csie.cool",
+				},
+			},
+		])}</${"script"}>`;
+	}
 </script>
 
 <head>
@@ -372,3 +393,5 @@
 		</table>
 	</div>
 </body>
+
+{create_ld()}
