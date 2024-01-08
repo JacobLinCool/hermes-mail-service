@@ -31,7 +31,7 @@
 		"@types/cookie": "^0.5.1",
 		"@types/debug": "^4.1.7",
 		"@types/jest": "^29.4.0",
-		"@types/node": "^18.13.0",
+		"@types/node": "^20.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.51.0",
 		"@typescript-eslint/parser": "^5.51.0",
 		"autoprefixer": "^10.4.13",
