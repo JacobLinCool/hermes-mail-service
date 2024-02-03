@@ -23,14 +23,13 @@
 				href="https://github.com/JacobLinCool/hermes-mail-service/fork"
 				target="_blank"
 				rel="noreferrer"
-				class="link-primary link"
+				class="link link-primary"
 			>
 				{$t("fork-the-repository")}
 			</a>
 		</li>
 		<li>{$t("setup-the-cloudflare-pages")}</li>
-		<li>{$t("bind-a-kv-namespace")}</li>
-		<li>{$t("set-environment-variable")}</li>
+		<li>{$t("bind-a-d1-database")}</li>
 	</ol>
 
 	<p>
