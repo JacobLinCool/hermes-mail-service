@@ -1,5 +1,5 @@
 import adapter from "@sveltejs/adapter-cloudflare";
-import { vitePreprocess } from "@sveltejs/kit/vite";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,6 +11,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			"$i18n/*": "./locales/*",
+			$api: "./src/api",
 		},
 	},
 };

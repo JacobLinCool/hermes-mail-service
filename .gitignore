@@ -136,3 +136,4 @@ dist
 docs
 
 .svelte-kit
+db.sqlite
