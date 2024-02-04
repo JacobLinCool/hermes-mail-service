@@ -12,14 +12,14 @@ Example: [https://hermes.csie.cool/](https://hermes.csie.cool/)
 
 ### Ease of Use
 
-- Manage the service through a web UI
-- I18n support (currently, English and Chinese)
+-   Manage the service through a web UI
+-   I18n support (currently, English and Chinese)
 
 ### Secure
 
-- Token-based Authentication
-- Address and Domain Allowlist
-- Auto Expiration
+-   Token-based Authentication
+-   Address and Domain Allowlist
+-   Auto Expiration
 
 ## Getting Started
 

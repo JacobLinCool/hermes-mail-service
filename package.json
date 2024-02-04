@@ -14,8 +14,8 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
-		"lint": "prettier --ignore-path .gitignore --check **/*.{ts,js,json,yaml,yml,svelte,html,css} && eslint .",
-		"format": "prettier --ignore-path .gitignore --write **/*.{ts,js,json,yaml,yml,svelte,html,css}",
+		"lint": "prettier --ignore-path .gitignore --check . && eslint .",
+		"format": "prettier --ignore-path .gitignore --write .",
 		"gen:client": "openapi-typescript .svelte-kit/output/prerendered/pages/api/openapi.json -o client/api.d.ts",
 		"check-size": "wrangler deploy .svelte-kit/cloudflare/_worker.js --name test --compatibility-date 2024-02-05 --dry-run"
 	},

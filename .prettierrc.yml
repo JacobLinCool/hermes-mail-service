@@ -15,6 +15,6 @@ overrides:
           parser: "svelte"
 
 plugins:
-    - prettier-plugin-svelte
     - prettier-plugin-tailwindcss
     - prettier-plugin-organize-imports
+    - prettier-plugin-svelte
