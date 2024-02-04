@@ -1,7 +1,7 @@
 {
 	"after-you-have-completed-the-setup-you-can-generate-a-token-and-use-it-to-send-emails-through-the-api": "After you have completed the setup, you can generate a token and use it to send emails through the API.",
 	"allowlist": "Allowlist",
-	"bind-a-kv-namespace": "Bind a KV namespace",
+	"bind-a-d1-database": "Bind a D1 database",
 	"create-token": "Create Token",
 	"errors": {
 		"config-not-set": "`app:config` is not set in STORE KV, please set it before start using the service",

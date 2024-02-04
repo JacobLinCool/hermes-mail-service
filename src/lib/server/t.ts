@@ -1,4 +1,4 @@
-import { waitLocale, t } from "svelte-i18n";
+import { t, waitLocale } from "svelte-i18n";
 
 export async function $t(key: string): Promise<string> {
 	await waitLocale();

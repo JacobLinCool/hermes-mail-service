@@ -1,45 +1,45 @@
-# ![](./static/hermes-xs.png) Hermes, mail service
+# ![icon](./static/hermes-xs.png) Hermes, mail service
 
 Hermes is an open-source edge email sending service, which is designed to be easy to setup and use.
 
 Example: [https://hermes.csie.cool/](https://hermes.csie.cool/)
 
-| English | Chinese |
-|:-------------------------:|:-------------------------:|
-|![en](./screenshots/hermes-owner-en.png)|![](./screenshots/hermes-owner-zh.png)|
+|                 English                  |                 Chinese                  |
+| :--------------------------------------: | :--------------------------------------: |
+| ![en](./screenshots/hermes-owner-en.png) | ![zh](./screenshots/hermes-owner-zh.png) |
 
 ## Features
 
-- [x] Easy to Setup - You only need a browser to setup the service
-- [x] Token-based authentication - Use allowlist and TTL to control the access
-- [x] Web UI - Control the service from the anywhere
-- [x] I18n - The web UI supports multiple languages (currently, English and Chinese)
+### Ease of Use
+
+-   Manage the service through a web UI
+-   I18n support (currently, English and Chinese)
+
+### Secure
+
+-   Token-based Authentication
+-   Address and Domain Allowlist
+-   Auto Expiration
 
 ## Getting Started
 
-> First, you need to have a domain that is managed by Cloudflare.
+> First, you need to have a domain managed by Cloudflare.
 
-1. Fork the repository
+1. [Fork the repository](https://github.com/JacobLinCool/hermes-mail-service/fork)
 2. Setup the [Cloudflare Pages](https://pages.cloudflare.com/) for your forked repository
-3. Binding a KV namespace to your Cloudflare Pages project as `STORE`
-4. Set the `app:config` key in the KV namespace to the following JSON:
-
-```json
-{
-  "MAIN_KEY": "YOUR_MAIN_KEY"
-}
-```
-
-> You can also set other configurations in the `app:config` key, see [config.ts](./src/lib/server/config.ts) for more details.
-> For example, you can set `CORS` to `"*"` to allow CORS requests from anywhere.
+3. Binding a D1 database to your Cloudflare Pages project as `D1`
+4. Open the setup page in your browser!
 
 All of the above can be done in the browser! No need to install anything.
+
+> It uses Mailchannels under the hood, so you also need to setup the [Domain Lockdown](https://community.cloudflare.com/t/introducing-mailchannels-domain-lockdown/523913) before sending emails.
+> (Adding `_mailchannels` TXT record with value `v=mc1 cfid=your-hermes.pages.dev` to your domain)
 
 ## API Usage
 
 Once you have generated a token, you can use the API to send emails.
 
-See [examples](./examples/) for more details.
+See [OpenAPI documentation](hhttps://api-spec.pages.dev/rapidoc?url=https%3A%2F%2Fhermes.csie.cool%2Fapi%2Fopenapi.json) for more information.
 
 ## Credits
 

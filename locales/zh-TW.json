@@ -1,7 +1,7 @@
 {
 	"after-you-have-completed-the-setup-you-can-generate-a-token-and-use-it-to-send-emails-through-the-api": "完成設置後，你可以生成授權碼（token）並使用它通過 API 發送電子郵件。",
 	"allowlist": "許可列表",
-	"bind-a-kv-namespace": "連結一個 KV 命名空間",
+	"bind-a-d1-database": "連結一個 D1 資料庫",
 	"create-token": "建立授權",
 	"errors": {
 		"config-not-set": "無法在 STORE 找到 `app:config` 的值，請先透過 Cloudflare 儀表板設定它",
