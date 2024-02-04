@@ -8,7 +8,7 @@
 	"scripts": {
 		"prepare": "husky",
 		"dev": "vite dev",
-		"build": "tsx scripts/build-templates.ts && vite build",
+		"build": "pnpm -r build && vite build",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
