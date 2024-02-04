@@ -28,15 +28,18 @@ Example: [https://hermes.csie.cool/](https://hermes.csie.cool/)
 1. [Fork the repository](https://github.com/JacobLinCool/hermes-mail-service/fork)
 2. Setup the [Cloudflare Pages](https://pages.cloudflare.com/) for your forked repository
 3. Binding a D1 database to your Cloudflare Pages project as `D1`
-4. Open the web UI!
+4. Open the setup page in your browser!
 
 All of the above can be done in the browser! No need to install anything.
+
+> It uses Mailchannels under the hood, so you also need to setup the [Domain Lockdown](https://community.cloudflare.com/t/introducing-mailchannels-domain-lockdown/523913) before sending emails.
+> (Adding `_mailchannels` TXT record with value `v=mc1 cfid=your-hermes.pages.dev` to your domain)
 
 ## API Usage
 
 Once you have generated a token, you can use the API to send emails.
 
-See [examples](./examples/) for more details.
+See [OpenAPI documentation](hhttps://api-spec.pages.dev/rapidoc?url=https%3A%2F%2Fhermes.csie.cool%2Fapi%2Fopenapi.json) for more information.
 
 ## Credits
 
