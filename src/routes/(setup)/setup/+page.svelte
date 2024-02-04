@@ -11,45 +11,55 @@
 	let save_raw = false;
 	let error = "";
 
+	let setting = false;
 	async function setup() {
+		if (setting) {
+			return;
+		}
+		setting = true;
+
 		error = "";
 
-		if (mainkey.length === 0) {
-			error = "Main Key is required";
-			return;
-		}
+		try {
+			if (mainkey.length === 0) {
+				throw new Error("Main Key is required");
+			}
 
-		const encoded = await encode(mainkey);
-		const res1 = await client.PUT("/api/config/mainkey", {
-			headers: { Authorization: `Bearer ${encoded}` },
-			body: { mainkey: encoded },
-		});
-		if (!res1.response.ok) {
-			error = "Failed to save main key";
-			return;
-		}
+			const encoded = await encode(mainkey);
+			const res1 = await client.PUT("/api/config/mainkey", {
+				headers: { Authorization: `Bearer ${encoded}` },
+				body: { mainkey: encoded },
+			});
+			if (!res1.response.ok) {
+				throw new Error("Failed to save main key");
+			}
 
-		const res2 = await client.PUT("/api/config/{key}", {
-			params: { path: { key: "cors" } },
-			headers: { Authorization: `Bearer ${encoded}` },
-			body: { value: cors ? "*" : "" },
-		});
-		if (!res2.response.ok) {
-			error = "Failed to save CORS setting";
-			return;
-		}
+			const res2 = await client.PUT("/api/config/{key}", {
+				params: { path: { key: "cors" } },
+				headers: { Authorization: `Bearer ${encoded}` },
+				body: { value: cors ? "*" : "" },
+			});
+			if (!res2.response.ok) {
+				throw new Error("Failed to save CORS setting");
+			}
 
-		const res3 = await client.PUT("/api/config/{key}", {
-			params: { path: { key: "save-raw" } },
-			headers: { Authorization: `Bearer ${encoded}` },
-			body: { value: save_raw ? "true" : "" },
-		});
-		if (!res3.response.ok) {
-			error = "Failed to save Save Raw Request setting";
-			return;
-		}
+			const res3 = await client.PUT("/api/config/{key}", {
+				params: { path: { key: "save-raw" } },
+				headers: { Authorization: `Bearer ${encoded}` },
+				body: { value: save_raw ? "true" : "" },
+			});
+			if (!res3.response.ok) {
+				throw new Error("Failed to save Save Raw Request setting");
+			}
 
-		await goto("/", { invalidateAll: true });
+			await goto("/", { invalidateAll: true });
+		} catch (e) {
+			if (e instanceof Error) {
+				error = e.message;
+			}
+		} finally {
+			setting = false;
+		}
 	}
 </script>
 
@@ -106,7 +116,9 @@
 					</label>
 				</div>
 				<div class="form-control mt-6">
-					<button class="btn btn-primary" on:click={setup}>Configure and Start</button>
+					<button class="btn btn-primary" on:click={setup} disabled={setting}
+						>Configure and Start</button
+					>
 				</div>
 			</form>
 		</div>
