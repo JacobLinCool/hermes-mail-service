@@ -22,6 +22,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (!event.request.headers.has("Authorization")) {
 		const mainkey = event.cookies.get("mainkey");
 		if (mainkey) {
+			event.request = new Request(event.request);
 			event.request.headers.set("Authorization", `Bearer ${mainkey}`);
 		}
 	}

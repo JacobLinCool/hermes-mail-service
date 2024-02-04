@@ -8,7 +8,11 @@ export const db = DB<Database>();
  * @returns A string containing the error, or null if no error was found.
  */
 export async function check(): Promise<string | null> {
-	const tables = await db.introspection.getTables();
+	const tables = await db
+		.selectFrom("sqlite_master")
+		.select(["name"])
+		.where("type", "=", "table")
+		.execute();
 	const names = tables.map((table) => table.name);
 	const expected = ["Config", "Token", "UsageRecord"] satisfies (keyof Database)[];
 	const missing = expected.filter((name) => !names.includes(name));
