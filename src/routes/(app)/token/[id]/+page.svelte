@@ -14,7 +14,7 @@
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 				<div>
 					<strong>ID:</strong>
-					{token.id}
+					<span class="overflow-auto">{token.id}</span>
 				</div>
 				<div>
 					<strong>Scope:</strong>
@@ -48,8 +48,7 @@
 				<div class="collapse-title text-xl font-medium">
 					<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 						<div>
-							<strong>Timestamp:</strong>
-							{date(record.timestamp)}
+							<strong>{date(record.timestamp)}</strong>
 						</div>
 						<div>
 							<strong>From:</strong>

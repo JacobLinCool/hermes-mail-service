@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { invalidateAll } from "$app/navigation";
 	import { page } from "$app/stores";
+	import Icon from "@iconify/svelte";
 	import { create } from "hermes-mail";
 
 	const client = create({ baseUrl: $page.url.origin });
@@ -40,6 +41,7 @@
 				<th>created</th>
 				<th>expires</th>
 				<th>revoked</th>
+				<th>usage</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -65,6 +67,9 @@
 								on:click={() => revoke(token.id)}>Revoke</button
 							>
 						{/if}
+					</td>
+					<td>
+						<a href="/token/{token.id}"><Icon icon="mdi:list-box" class="icon" /></a>
 					</td>
 				</tr>
 			{/each}
