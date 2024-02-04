@@ -35,7 +35,11 @@ class Config {
 		}
 
 		this.cache.set(key, value);
-		const result = await db.insertInto("Config").values({ key, value }).executeTakeFirst();
+		const result = await db
+			.insertInto("Config")
+			.values({ key, value })
+			.onConflict((oc) => oc.doUpdateSet({ value }))
+			.executeTakeFirst();
 		return result.numInsertedOrUpdatedRows === 1n;
 	}
 
