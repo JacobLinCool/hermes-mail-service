@@ -39,7 +39,7 @@ All of the above can be done in the browser! No need to install anything.
 
 Once you have generated a token, you can use the API to send emails.
 
-See [OpenAPI documentation](hhttps://api-spec.pages.dev/rapidoc?url=https%3A%2F%2Fhermes.csie.cool%2Fapi%2Fopenapi.json) for more information.
+See [OpenAPI documentation](https://api-spec.pages.dev/rapidoc?url=https://hermes.csie.cool/api/openapi.json) for more information.
 
 ## Credits
 
