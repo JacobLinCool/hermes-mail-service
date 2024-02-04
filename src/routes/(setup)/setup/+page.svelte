@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { encode } from "$lib/mainkey";
+	import { create } from "hermes-mail";
+	import { page } from "$app/stores";
+
+	const client = create({ baseUrl: $page.url.origin });
 
 	let mainkey = "";
 	let cors = false;
@@ -16,41 +20,31 @@
 		}
 
 		const encoded = await encode(mainkey);
-		const res = await fetch("/api/config/mainkey", {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${encoded}`,
-			},
-			body: JSON.stringify({ mainkey: encoded }),
+		const res1 = await client.PUT("/api/config/mainkey", {
+			headers: { Authorization: `Bearer ${encoded}` },
+			body: { mainkey: encoded },
 		});
-		if (!res.ok) {
+		if (!res1.response.ok) {
 			error = "Failed to save main key";
 			return;
 		}
 
-		const res2 = await fetch("/api/config/cors", {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${encoded}`,
-			},
-			body: JSON.stringify({ value: cors.toString() }),
+		const res2 = await client.PUT("/api/config/{key}", {
+			params: { path: { key: "cors" } },
+			headers: { Authorization: `Bearer ${encoded}` },
+			body: { value: cors ? "*" : "" },
 		});
-		if (!res2.ok) {
+		if (!res2.response.ok) {
 			error = "Failed to save CORS setting";
 			return;
 		}
 
-		const res3 = await fetch("/api/config/save-raw", {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${encoded}`,
-			},
-			body: JSON.stringify({ value: save_raw.toString() }),
+		const res3 = await client.PUT("/api/config/{key}", {
+			params: { path: { key: "save-raw" } },
+			headers: { Authorization: `Bearer ${encoded}` },
+			body: { value: save_raw ? "true" : "" },
 		});
-		if (!res3.ok) {
+		if (!res3.response.ok) {
 			error = "Failed to save Save Raw Request setting";
 			return;
 		}

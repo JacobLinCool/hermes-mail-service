@@ -1,3 +1,7 @@
+<script>
+	export let data;
+</script>
+
 <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" style="color-scheme: light dark">
 	<head>
 		<meta charset="utf-8" />
@@ -355,8 +359,7 @@
 														style="
 															text-decoration: none;
 															color: #7e22ce;
-														"
-														>GitHub</a
+														">GitHub</a
 													>
 													・
 													<a
@@ -366,8 +369,7 @@
 														style="
 															text-decoration: none;
 															color: #7e22ce;
-														"
-														>Demo</a
+														">Demo</a
 													>
 												</p>
 											</td>

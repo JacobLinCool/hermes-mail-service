@@ -8,6 +8,7 @@ export interface Token {
 	scope: string;
 	created: number;
 	expires: number;
+	revoked: number | null;
 }
 
 export interface UsageRecord {

@@ -27,6 +27,7 @@ export const Output = z.object({
 				scope: z.string().describe("The token scope"),
 				created: z.number().describe("The token creation date"),
 				expires: z.number().describe("The token expiration date"),
+				revoked: z.number().nullable().describe("The token revocation date"),
 			}),
 		)
 		.describe("The tokens"),

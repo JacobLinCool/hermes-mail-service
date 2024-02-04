@@ -17,8 +17,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
-	if (event.url.pathname.startsWith("/template")) {
-		return resolve(event);
+	// if the request does not have an Authorization header,
+	// check for a mainkey cookie and use it as the Authorization header if it exists
+	if (!event.request.headers.has("Authorization")) {
+		const mainkey = event.cookies.get("mainkey");
+		if (mainkey) {
+			event.request.headers.set("Authorization", `Bearer ${mainkey}`);
+		}
 	}
 
 	const res = await resolve(event);

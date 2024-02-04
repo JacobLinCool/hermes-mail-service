@@ -35,6 +35,7 @@ export async function init() {
 		.addColumn("scope", "text", (col) => col.notNull())
 		.addColumn("created", "integer", (col) => col.notNull())
 		.addColumn("expires", "integer", (col) => col.notNull())
+		.addColumn("revoked", "integer")
 		.execute();
 
 	await db.schema

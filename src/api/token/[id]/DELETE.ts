@@ -28,9 +28,13 @@ export default new Endpoint({ Param, Output, Error, Modifier: MainkeyAuth }).han
 			throw Error[401];
 		}
 
-		const token = await db.deleteFrom("Token").where("Token.id", "=", id).executeTakeFirst();
+		const token = await db
+			.updateTable("Token")
+			.set({ revoked: Date.now() })
+			.where("Token.id", "=", id)
+			.executeTakeFirst();
 
-		if (token.numDeletedRows === 0n) {
+		if (token.numUpdatedRows === 0n) {
 			throw Error[404];
 		}
 

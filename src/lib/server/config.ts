@@ -1,3 +1,4 @@
+import { building } from "$app/environment";
 import { db } from "./db";
 
 export type ConfigKey = "mainkey" | "cors" | "save-raw";
@@ -6,6 +7,10 @@ class Config {
 	protected cache = new Map<ConfigKey, string | null>();
 
 	public async get(key: ConfigKey): Promise<string | null> {
+		if (building) {
+			return null;
+		}
+
 		if (!this.cache.has(key)) {
 			const result = await db
 				.selectFrom("Config")
@@ -19,6 +24,10 @@ class Config {
 	}
 
 	public async set(key: ConfigKey, value: string): Promise<boolean> {
+		if (building) {
+			return true;
+		}
+
 		if (this.cache.has(key)) {
 			if (this.cache.get(key) === value) {
 				return false;
@@ -31,6 +40,10 @@ class Config {
 	}
 
 	public async delete(key: ConfigKey): Promise<boolean> {
+		if (building) {
+			return true;
+		}
+
 		if (this.cache.has(key)) {
 			this.cache.delete(key);
 		}

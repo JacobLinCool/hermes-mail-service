@@ -8,13 +8,14 @@ import { Endpoint, error, z } from "sveltekit-api";
 export const Input = z.object({
 	scope: z.string().min(1).max(1000).describe("The token scope"),
 	expires: z.number().nonnegative().describe("The token expiration date"),
-}) satisfies z.ZodSchema<Omit<Token, "id" | "created">>;
+}) satisfies z.ZodSchema<Omit<Token, "id" | "created" | "revoked">>;
 
 export const Output = z.object({
 	id: z.string().describe("The token ID"),
 	scope: z.string().describe("The token scope"),
 	created: z.number().describe("The token creation date"),
 	expires: z.number().describe("The token expiration date"),
+	revoked: z.number().nullable().describe("The token revocation date"),
 }) satisfies z.ZodSchema<Token>;
 
 export const Error = {
@@ -43,6 +44,7 @@ export default new Endpoint({ Input, Output, Error, Modifier: MainkeyAuth }).han
 		const token: Token = {
 			id: generate_token_id(),
 			created: Date.now(),
+			revoked: null,
 			...param,
 		};
 
