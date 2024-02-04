@@ -17,8 +17,8 @@ export const ContentItem = z.object({
 
 export const EmailAddress = z
 	.object({
-		email: z.string().email(),
-		name: z.string().optional(),
+		email: z.string().email().describe("The email address"),
+		name: z.string().optional().describe("The display name"),
 	})
 	.or(
 		z
@@ -34,22 +34,34 @@ export const CustomHeaders = z
 	);
 
 export const Personalization = z.object({
-	to: z.array(EmailAddress).min(1).max(1000),
-	from: EmailAddress.optional(),
-	bcc: z.array(EmailAddress).max(1000).optional(),
-	cc: z.array(EmailAddress).max(1000).optional(),
+	to: z.array(EmailAddress).min(1).max(1000).describe("The email address of the recipient"),
+	from: EmailAddress.optional().describe("Override the sender of this email"),
+	bcc: z
+		.array(EmailAddress)
+		.max(1000)
+		.optional()
+		.describe("The blind carbon copy email address of the recipient"),
+	cc: z
+		.array(EmailAddress)
+		.max(1000)
+		.optional()
+		.describe("The carbon copy email address of the recipient"),
 	headers: CustomHeaders.optional(),
 	reply_to: EmailAddress.optional(),
-	subject: z.string().optional(),
+	subject: z.string().optional().describe("Override the subject of this email"),
 });
 
 export const Input = z.object({
-	from: EmailAddress,
-	personalizations: z.array(Personalization).min(1).max(1000),
-	subject: z.string().min(1).max(200),
-	content: z.array(ContentItem),
+	from: EmailAddress.describe("The email address of the sender"),
+	personalizations: z
+		.array(Personalization)
+		.min(1)
+		.max(1000)
+		.describe("The personalizations, can be seen as the recipients of the email"),
+	subject: z.string().min(1).max(200).describe("The subject of the email"),
+	content: z.array(ContentItem).describe("The content of the email"),
 	headers: CustomHeaders.optional(),
-	reply_to: EmailAddress.optional(),
+	reply_to: EmailAddress.optional().describe("Set the reply-to address"),
 });
 
 export const Output = z.object({
