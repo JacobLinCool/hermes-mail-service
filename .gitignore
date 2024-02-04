@@ -137,3 +137,4 @@ docs
 
 .svelte-kit
 db.sqlite
+.wrangler/
