@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { JsonView } from "@zerodevx/svelte-json-view";
+
 	export let data;
 
 	const token = data.token;
@@ -63,7 +65,7 @@
 				<div class="collapse-content">
 					<p><strong>Subject:</strong> {record.subject}</p>
 					{#if record.raw}
-						<pre><code>{record.raw}</code></pre>
+						<JsonView json={record.raw} />
 					{/if}
 				</div>
 			</div>
