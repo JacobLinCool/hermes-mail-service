@@ -49,6 +49,9 @@ export const Personalization = z.object({
 	headers: CustomHeaders.optional(),
 	reply_to: EmailAddress.optional(),
 	subject: z.string().optional().describe("Override the subject of this email"),
+	dkim_domain: z.string().optional().describe("The domain to use for DKIM signing"),
+	dkim_selector: z.string().optional().describe("The selector to use for DKIM signing"),
+	dkim_private_key: z.string().optional().describe("The private key to use for DKIM signing"),
 });
 
 export const Input = z.object({
@@ -121,6 +124,12 @@ export default new Endpoint({ Input, Output, Error, Modifier: TokenAuth }).handl
 		param.dkim_domain ||= (await config.get("dkim_domain")) ?? undefined;
 		param.dkim_selector ||= (await config.get("dkim_selector")) ?? undefined;
 		param.dkim_private_key ||= (await config.get("dkim_private_key")) ?? undefined;
+
+		for (const personalization of param.personalizations) {
+			personalization.dkim_domain ||= param.dkim_domain;
+			personalization.dkim_selector ||= param.dkim_selector;
+			personalization.dkim_private_key ||= param.dkim_private_key;
+		}
 
 		console.log("sending email", param);
 
