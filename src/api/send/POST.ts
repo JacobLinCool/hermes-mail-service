@@ -118,9 +118,11 @@ export default new Endpoint({ Input, Output, Error, Modifier: TokenAuth }).handl
 			})
 			.executeTakeFirst();
 
-		param.dkim_domain ??= (await config.get("dkim_domain")) ?? undefined;
-		param.dkim_selector ??= (await config.get("dkim_selector")) ?? undefined;
-		param.dkim_private_key ??= (await config.get("dkim_private_key")) ?? undefined;
+		param.dkim_domain ||= (await config.get("dkim_domain")) ?? undefined;
+		param.dkim_selector ||= (await config.get("dkim_selector")) ?? undefined;
+		param.dkim_private_key ||= (await config.get("dkim_private_key")) ?? undefined;
+
+		console.log("sending email", param);
 
 		const req = new Request("https://api.mailchannels.net/tx/v1/send", {
 			method: "POST",
