@@ -82,5 +82,5 @@
 		"url": "https://github.com/JacobLinCool/hermes-mail-service/issues"
 	},
 	"homepage": "https://jacoblincool.github.io/hermes-mail-service",
-	"packageManager": "pnpm@8.15.1"
+	"packageManager": "pnpm@8.15.7"
 }

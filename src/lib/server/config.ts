@@ -1,7 +1,13 @@
 import { building } from "$app/environment";
 import { db } from "./db";
 
-export type ConfigKey = "mainkey" | "cors" | "save-raw";
+export type ConfigKey =
+	| "mainkey"
+	| "cors"
+	| "save-raw"
+	| "dkim_domain"
+	| "dkim_selector"
+	| "dkim_private_key";
 
 class Config {
 	protected cache = new Map<ConfigKey, string | null>();

@@ -62,6 +62,9 @@ export const Input = z.object({
 	content: z.array(ContentItem).describe("The content of the email"),
 	headers: CustomHeaders.optional(),
 	reply_to: EmailAddress.optional().describe("Set the reply-to address"),
+	dkim_domain: z.string().optional().describe("The domain to use for DKIM signing"),
+	dkim_selector: z.string().optional().describe("The selector to use for DKIM signing"),
+	dkim_private_key: z.string().optional().describe("The private key to use for DKIM signing"),
 });
 
 export const Output = z.object({
@@ -114,6 +117,10 @@ export default new Endpoint({ Input, Output, Error, Modifier: TokenAuth }).handl
 				raw: save_raw ? JSON.stringify(param) : null,
 			})
 			.executeTakeFirst();
+
+		param.dkim_domain ??= (await config.get("dkim_domain")) ?? undefined;
+		param.dkim_selector ??= (await config.get("dkim_selector")) ?? undefined;
+		param.dkim_private_key ??= (await config.get("dkim_private_key")) ?? undefined;
 
 		const req = new Request("https://api.mailchannels.net/tx/v1/send", {
 			method: "POST",
