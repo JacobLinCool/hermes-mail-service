@@ -23,7 +23,7 @@
 		"build": "tsup"
 	},
 	"dependencies": {
-		"openapi-fetch": "^0.8.2",
+		"openapi-fetch": "^0.10.0",
 		"openapi-typescript-helpers": "^0.0.6"
 	},
 	"devDependencies": {
